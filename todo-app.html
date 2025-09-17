@@ -394,6 +394,15 @@
     </div>
 
     <script>
+        // Add service worker registration for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    // Service worker registration failed, but app still works
+                });
+            });
+        }
+
         class TodoApp {
             constructor() {
                 this.tasks = JSON.parse(localStorage.getItem('companyTasks')) || [];
